@@ -1,8 +1,10 @@
+{% load crispy_forms_tags %}
 <h1>Which credit card should you get?</h1>
 <h4>Enter how much you spend each year in these categories (approximately). Then hit submit.</h4>
 
 <form action="/your-name/" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+ {{ form|crispy }}
+
     <input type="submit" value="Submit">
 </form>
