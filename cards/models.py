@@ -7,7 +7,7 @@ class Card (models.Model):
 	bankName=models.CharField(max_length=200)
 	annualFee= models.IntegerField()
 	rewardsType=models.CharField(max_length=200)
-	rewardValue= models.IntegerField()
+	rewardValue= models.DecimalField(max_digits=5, decimal_places=5)
 	rewardsDisplay= models.TextField()
 	groceryMultiplier= models.IntegerField()
 	restMultiplier= models.IntegerField()
@@ -15,11 +15,14 @@ class Card (models.Model):
 	otherMultiplier=models.IntegerField()
 	gasMultiplier= models.IntegerField()
 	valOfSingRe= models.IntegerField()
+	everythingElse = models.IntegerField(default=1)
 	APR= models.IntegerField()
 	bonusDisplay=models.TextField()
 	bonusValue= models.IntegerField() 
 	link=models.TextField()
 	creditScore= models.IntegerField()
 
+	def __str__(self):
+		return self.cardName
 
 
