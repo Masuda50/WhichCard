@@ -26,3 +26,6 @@ def get_info(request):
         form = CreditForm()
 
     return render(request, 'cards/forms.html', {'form': form})
+
+def about_us(request):
+    return render(request, 'cards/AboutUs.html')
