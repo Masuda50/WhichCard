@@ -1,0 +1,24 @@
+{% load static %}
+<DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>Which Card</title>
+</head>
+
+<body>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+<div class="navbar">
+   <div class="title">
+    <p> Which Card</p>
+  </div>
+      <a href="#about">About Us</a>
+      <a href="{% url 'forms' %}">Forms</a>
+      <a class="active" href="{% url 'home' %}">Home</a>
+</div>
+
+</div>
+{% block content %}
+{% endblock %}
+</body>

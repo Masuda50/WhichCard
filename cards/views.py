@@ -7,7 +7,7 @@ from cards.forms import CreditForm
 
 
 def home(request):
-    return HttpResponse('<h1>Which Card</h1>')
+    return render(request, 'cards/homepage.html')
 
 def get_info(request):
     # if this is a POST request we need to process the form data
