@@ -29,14 +29,16 @@ def get_info(request):
             travels = form.cleaned_data['travels']
             clothes = form.cleaned_data['clothes']
             everything_else = form.cleaned_data['etc']
-            find_cards(groceries, gas, travels, clothes, everything_else)
 
-            redirect("cards/display_cards.html")
+            # find_cards(groceries, gas, travels, clothes, everything_else)
+
+            return redirect("/display_cards")
     # if a GET (or any other method) we'll create a blank form
     else:
         form = CreditForm()
 
     return render(request, 'cards/forms.html', {'form': form})
+
 
 def about_us(request):
     return render(request, 'cards/AboutUs.html')

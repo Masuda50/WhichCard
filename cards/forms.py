@@ -1,5 +1,6 @@
 from django import forms
 
+
 class CreditForm(forms.Form):
     groceries = forms.DecimalField(label='Groceries', min_value=0)
     gas       = forms.DecimalField(label='Gas', min_value=0)

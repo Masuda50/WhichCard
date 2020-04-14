@@ -37,9 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'selenium',
 
     # Custom apps
     'cards.apps.CardsConfig',
+
+
 ]
 
 MIDDLEWARE = [
@@ -117,6 +120,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIR = (
+    os.path.join(BASE_DIR, 'cards/static'),
+)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Activate Django-Heroku
 django_heroku.settings(locals())
