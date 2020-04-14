@@ -6,7 +6,7 @@ class BaseFunctionalTest(LiveServerTestCase):
 
     # ran at start of every test
     def setUp(self):
-        self.browser = webdriver.Chrome('functional_tests/chromedriver.exe')
+        self.browser = webdriver.Chrome('functional_tests/chromedriver')
 
     # ran at end of every test
     def tearDown(self):
