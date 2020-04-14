@@ -16,7 +16,7 @@ class CardsViewsTests(TestCase):
     def test_home_view_GET(self):
         response = self.__getResponse(self.home_url)
         self.__check_response_code(response)
-        self.__checkTemplateUsed(response, 'cards/Homepage.html')
+        self.__checkTemplateUsed(response, 'cards/homepage.html')
 
     # test about us view
     def test_aboutus_view_GET(self):
