@@ -15,7 +15,10 @@ class TestFormPage(BaseFunctionalTest):
 
     # test no data in form submit stays in forms page
     def test_form_no_data_submit(self):
-        self.__check_form_submit_helper('', "cards:forms")
+        self.browser.find_element_by_xpath("//input[@value='Submit']").submit()
+
+        self.assertEquals(self.browser.current_url,
+                          self.live_server_url + reverse("cards:forms"))
 
     # test invalid data in form submit stats in forms page
     def test_form_invalid_data_submit(self):
