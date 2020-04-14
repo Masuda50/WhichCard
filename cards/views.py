@@ -8,7 +8,7 @@ from cards.forms import CreditForm
 
 
 def home(request):
-    return render(request, 'cards/Homepage.html')
+    return render(request, 'cards/homepage.html')
 
 
 def get_display_cards(request):
