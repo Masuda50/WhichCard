@@ -57,14 +57,20 @@ class CardsViewsTests(TestCase):
 
     # helper method to get response given view_name
     def __getResponse(self, view_name):
+        assert view_name is not None and not view_name.isspace()
         return self.client.get(view_name)
 
     # helper to check for http response is good, i.e 200 or accurately returns false
     def __check_response_code(self, response, status_code=200):
+        assert response is not None and status_code is not None
+
         return self.assertEqual(response.status_code, status_code)
 
     # helper to check if response used template
     def __checkTemplateUsed(self, response, template):
+        assert response is not None
+        assert template is not None and not template.isspace()
+
         return self.assertTemplateUsed(response, template)
 
 

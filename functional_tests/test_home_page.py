@@ -1,31 +1,43 @@
-from selenium import webdriver
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.urls import reverse
-import time
+from .base_test_class import BaseFunctionalTest
 
 
-class TestHomePage(StaticLiveServerTestCase):
+class TestHomePage(BaseFunctionalTest):
 
     def setUp(self):
-        self.browser = webdriver.Chrome('functional_tests/chromedriver.exe')
-
-    def tearDown(self):
-        self.browser.close()
+        super().setUp()
+        self.browser.get(self.live_server_url)                 # home url
 
     # test that the homepage was loaded
-    def test_user_sees_homepage(self):
-        self.browser.get(self.live_server_url)
-
+    def test_user_first_visit(self):
         landing = self.browser.find_element_by_tag_name('body')
 
         self.assertEqual(
-            landing.text, 'Which Card\nAbout Us Forms Home'
+            landing.text, 'Which Card\nAbout Us\nForms\nHome'
         )
 
-    def test_home_page_redirects_to_form(self):
-        self.browser.get(self.live_server_url)
+    # test click Forms in navbar
+    def test_home_page_redirects_to_forms(self):
+        self.__check_navbar_redirection_to("Forms", 'cards:forms')
 
-        add_url = self.live_server_url
-        target = self.browser.find_element_by_tag_name('a')
-        print(target.text)
-        time.sleep(10)
+    # test click About us in navbar
+    def test_home_page_redirects_to_aboutus(self):
+        self.__check_navbar_redirection_to("About Us", 'cards:aboutus')
+
+    # test click Home in navbar
+    def test_home_page_redirects_to_home(self):
+        self.__check_navbar_redirection_to("Home", "cards:home")
+
+    # helper to test navigation bar re-directions
+    def __check_navbar_redirection_to(self, element, destination):
+
+        assert element is not None and not element.isspace()
+        assert destination is not None and not destination.isspace()
+
+        self.browser.find_element_by_link_text(element).click()
+
+        target_url = self.live_server_url + reverse(destination)
+
+        self.assertEquals(self.browser.current_url,
+                          target_url)
+

@@ -19,4 +19,7 @@ class TestUrls(TestCase):
 
     # helper to check if url is resolved using function
     def __resolveUrl(self, url, function):
+        assert url is not None and not url.isspace()
+        assert function is not None and not url.isspace()
+
         return self.assertEqual(resolve(url).func, function)
