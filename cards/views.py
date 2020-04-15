@@ -31,13 +31,16 @@ def get_info(request):
             gas = form.cleaned_data['gas']
             travel = form.cleaned_data['travels']
             everything_else = form.cleaned_data['etc']
-            get_best_cards(groceries, dining_out, gas, travel, everything_else)
-            return render(request, 'cards/display_cards.html')
+            listofcards=getbestcards(groceries, diningout, gas, travel, everythingelse)
+            context = {}
+            context['listofcards'] = listofcards
+            return render(request, "cards/forms.html", context)
+            #return render(request, 'cards/display_cards.html')
     # if a GET (or any other method) we'll create a blank form
-    else:
-        form = CreditForm()
+        else:
+            form = CreditForm()
+        return render(request, 'cards/forms.html', {'form': form})
 
-    return render(request, 'cards/forms.html', {'form': form})
 
 
 # The method will likely be split
