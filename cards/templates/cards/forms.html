@@ -11,6 +11,15 @@
         {{ form|crispy }}
         <input type="submit" value="Submit">
     </form>
+
+    <div>
+        {% if listofcards %}
+            <h2>Best Cards</h2>
+        {% endif %}
+        {% for card in bestcards %}
+        {% include 'cards/display_cards.html' with value=card %}
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}
