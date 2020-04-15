@@ -31,13 +31,13 @@ def get_info(request):
             gas = form.cleaned_data['gas']
             travel = form.cleaned_data['travels']
             everything_else = form.cleaned_data['etc']
-            listofcards=get_best_cards(groceries, dining_out, gas, travel, everything_else)
-            bestcards=[]
-            for card in listofcards:
+            list_of_cards=get_best_cards(groceries, dining_out, gas, travel, everything_else)
+            best_cards=[]
+            for card in list_of_cards:
                 card_obj = get_cards(card)
-                bestcards.append(card_obj)
+                best_cards.append(card_obj)
             context = {}
-            context['bestcards'] = bestcards
+            context['best_cards'] = best_cards
             return render(request, 'cards/forms.html', context)
             #return render(request, 'cards/display_cards.html')
     # if a GET (or any other method) we'll create a blank form

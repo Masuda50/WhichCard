@@ -13,10 +13,10 @@
     </form>
 
     <div>
-        {% if listofcards %}
+        {% if list_of_cards %}
             <h2>Best Cards</h2>
         {% endif %}
-        {% for card in bestcards %}
+        {% for card in best_cards %}
         {% include 'cards/display_cards.html' with value=card %}
         {% endfor %}
     </div>
