@@ -13,7 +13,9 @@
     </form>
 
     <div>
-        <h2>Best Cards</h2>
+        {% if listofcards %}
+            <h2>Best Cards</h2>
+        {% endif %}
         {% for card in listofcards %}
         {% include 'cards/display_cards.html' with value=card %}
         {% endfor %}
