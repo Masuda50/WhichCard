@@ -16,7 +16,6 @@ class CardModelTest(TestCase):
 			groceryMultiplier=2,
 			restMultiplier=2,
 			travelMultiplier=2,
-			otherMultiplier=2,
 			gasMultiplier=2,
 			elseMultiplier=1,
 			APR=2,
