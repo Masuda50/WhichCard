@@ -1,4 +1,12 @@
-
+.body{
+background-image:url(//www.html.am/images/backgrounds/background-image-2.gif);
+width:300px;
+height:200px;
+color:black;
+font-size:18px;
+border:1px solid #ccc;
+padding:5px;"
+}
 .navbar {
      background-color: black;
      position :relative;
