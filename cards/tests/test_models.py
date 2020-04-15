@@ -18,7 +18,7 @@ class CardModelTest(TestCase):
 			travelMultiplier=2,
 			otherMultiplier=2,
 			gasMultiplier=2,
-			everythingElse=1,
+			elseMultiplier=1,
 			APR=2,
 			bonusDisplay="dd",
 			bonusValue=2,
