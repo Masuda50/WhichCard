@@ -11,7 +11,7 @@ class TestFormPage(BaseFunctionalTest):
 
     # test valid data in form submit redirects to display_cards page
     def test_form_valid_data_submit(self):
-        self.__check_form_submit_helper(3, "cards:display_cards")
+        self.__check_form_submit_helper(3, "cards:forms")
 
     # test no data in form submit stays in forms page
     def test_form_no_data_submit(self):
