@@ -58,6 +58,8 @@ def get_best_cards(grocery_input, dining_out_input, gas_input, travel_input, eve
 
     print('After sorting:')
     print(sorted_cards)
+    listofcards = list(sorted_cards.keys())
+    return listofcards
 
 
 def calculate_card_value(card, grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
