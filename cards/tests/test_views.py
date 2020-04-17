@@ -48,7 +48,8 @@ class CardsViewsTests(TestCase):
 
         response = self.client.post(self.get_info_url, data)
 
-        self.__check_response_code(response, 302)
+        self.__check_response_code(response)
+        self.__checkTemplateUsed(response, 'cards/forms.html')
 
     # test get_info view given no data
     def test_get_info_view_no_data_POST(self):

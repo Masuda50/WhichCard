@@ -1,15 +1,16 @@
 from django.test import TestCase
 from ..forms import CreditForm
 
+
 class CreditFormTest(TestCase):
 
     # test valid data in the form
     def test_credit_form_valid_data(self):
         data = {
             'groceries': 2,
+            'dining': 3,
             'gas': 3,
             'travels': 3,
-            'clothes': 3,
             'etc': 3,
         }
 

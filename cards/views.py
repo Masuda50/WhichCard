@@ -31,23 +31,27 @@ def get_info(request):
             gas = form.cleaned_data['gas']
             travel = form.cleaned_data['travels']
             everything_else = form.cleaned_data['etc']
-            list_of_cards=get_best_cards(groceries, dining_out, gas, travel, everything_else)
+
+            list_of_cards = get_best_cards(groceries, dining_out, gas, travel, everything_else)
             best_cards=[]
+
             for card in list_of_cards:
                 card_obj = get_cards(card)
                 best_cards.append(card_obj)
+
             context = {}
             context['best_cards'] = best_cards
             return render(request, 'cards/forms.html', context)
-            #return render(request, 'cards/display_cards.html')
     # if a GET (or any other method) we'll create a blank form
     else:
         form = CreditForm()
     return render(request, 'cards/forms.html', {'form': form})
 
+
 def get_cards(card_param):
     card = Card.objects.get(cardName=card_param)
     return card
+
 
 # The method will likely be split
 def get_best_cards(grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):

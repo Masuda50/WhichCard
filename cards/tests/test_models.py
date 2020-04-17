@@ -14,14 +14,14 @@ class CardModelTest(TestCase):
 			rewardValue=0.01,
 			rewardsDisplay="5% cash back on select categories",
 			groceryMultiplier=2,
-			restMultiplier=2,
+			restaurantMultiplier=2,
 			travelMultiplier=2,
 			gasMultiplier=2,
-			elseMultiplier=1,
+			everythingElse=1,
 			APR=2,
 			bonusDisplay="dd",
 			bonusValue=2,
-			link="fakesite.com",
+			link="Chase.com",
 			creditScore=2)
 
 		self.card.save()
