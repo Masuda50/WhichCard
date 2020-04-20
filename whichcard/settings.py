@@ -10,8 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
-import django_heroku
 import os
+import sys
+import psycopg2
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -119,5 +121,13 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # Activate Django-Heroku
-django_heroku.settings(locals())
+if 'test' in sys.argv:
+    if 'HEROKU' in os.environ:
+        import django_heroku
+        django_heroku.settings(locals())
+else:
+    import django_heroku
+    django_heroku.settings(locals())
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+    
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
