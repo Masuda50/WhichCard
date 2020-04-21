@@ -3,5 +3,3 @@ gunicorn
 django-heroku
 django-crispy-forms
 selenium
-psycopg2-binary
-dj_database_url
