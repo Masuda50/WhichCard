@@ -13,7 +13,7 @@ class TestHomePage(BaseFunctionalTest):
         landing = self.browser.find_element_by_tag_name('body')
 
         self.assertEqual(
-            landing.text, 'Which Card\nAbout Us Forms Home'
+            landing.text, 'Which Card\nAbout Us\nForms\nHome'
         )
 
     # test click Forms in navbar
