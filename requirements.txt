@@ -5,4 +5,4 @@ django-crispy-forms
 selenium
 psycopg2-binary
 dj_database_url
-dotenv
+python-dotenv
