@@ -11,7 +11,7 @@ class Card (models.Model):
 	rewardValue= models.DecimalField(max_digits=10, decimal_places=5)
 	rewardsDisplay= models.TextField()
 	groceryMultiplier= models.DecimalField(max_digits=10, decimal_places=5)
-	restaurantMultiplier= models.DecimalField(max_digits=10, decimal_places=5)
+	restMultiplier= models.DecimalField(max_digits=10, decimal_places=5)
 	travelMultiplier= models.DecimalField(max_digits=10, decimal_places=5)
 	gasMultiplier= models.DecimalField(max_digits=10, decimal_places=5)
 
