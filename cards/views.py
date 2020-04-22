@@ -77,7 +77,7 @@ def get_best_cards(grocery_input, dining_out_input, gas_input, travel_input, eve
 
 def calculate_card_value(card, grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
     card_grocer_multiplier = card.groceryMultiplier
-    card_restaurant_multiplier = card.restaurantMultiplier
+    card_restaurant_multiplier = card.restMultiplier
     card_gas_multiplier = card.gasMultiplier
     card_travel_multiplier = card.travelMultiplier
     card_everything_else_multiplier = card.elseMultiplier
