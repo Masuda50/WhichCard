@@ -14,7 +14,7 @@ class CardModelTest(TestCase):
 			rewardValue=0.01,
 			rewardsDisplay="5% cash back on select categories",
 			groceryMultiplier=2,
-			restaurantMultiplier=2,
+			restMultiplier=2,
 			travelMultiplier=2,
 			gasMultiplier=2,
 			everythingElse=1,
