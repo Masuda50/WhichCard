@@ -1,4 +1,5 @@
 from django.test import TestCase
+# from django import forms
 from ..forms import CreditForm
 
 
@@ -12,6 +13,9 @@ class CreditFormTest(TestCase):
             'gas': 3,
             'travels': 3,
             'etc': 3,
+            'annual': "Yes",
+            'credit_score': "Excellent", 
+            'banks': "Citibank",
         }
 
         form = CreditForm(data=data)
@@ -23,4 +27,4 @@ class CreditFormTest(TestCase):
         form = CreditForm(data={})
 
         self.assertFalse(form.is_valid())
-        self.assertEquals(len(form.errors), 5)
+        self.assertEquals(len(form.errors), 8)

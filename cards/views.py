@@ -32,6 +32,16 @@ def get_info(request):
             travel = form.cleaned_data['travels']
             everything_else = form.cleaned_data['etc']
 
+            credit_score = form.cleaned_data['credit_score']
+            annual = form.cleaned_data['annual']
+            banks = form.cleaned_data['banks']
+            if banks == ['all']:
+                banks = ['chase', 'citi', 'amex', 'capital one', 'bank of america', 'wells fargo']
+            # test, retrieving additional info
+            print(credit_score)
+            print(annual)
+            print(banks)
+
             list_of_cards = get_best_cards(groceries, dining_out, gas, travel, everything_else)
             best_cards=[]
 
