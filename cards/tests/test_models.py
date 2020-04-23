@@ -22,7 +22,9 @@ class CardModelTest(TestCase):
 			bonusDisplay="dd",
 			bonusValue=2,
 			link="Chase.com",
-			creditScore=2)
+			creditScore=2,
+			bonusMinimumSpend=1,
+			bonusSpendMonths=1)
 
 		self.card.save()
 
