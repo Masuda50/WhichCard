@@ -1,4 +1,5 @@
 from django.test import TestCase
+# from django import forms
 from ..forms import CreditForm
 
 
@@ -14,7 +15,7 @@ class CreditFormTest(TestCase):
             'etc': 3,
             'annual': "Yes",
             'credit_score': "Excellent", 
-            'banks': "Citibank" 
+            'banks': "Citibank",
         }
 
         form = CreditForm(data=data)
