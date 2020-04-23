@@ -24,7 +24,9 @@ class TestFormPage(BaseFunctionalTest):
             bonusDisplay="dd",
             bonusValue=2,
             link="Chase.com",
-            creditScore=2)
+            creditScore=2,
+            bonusMinimumSpend=1,
+			bonusSpendMonths=1)
 
         self.card.save()
         self.browser.get(self.live_server_url + reverse("cards:forms"))
