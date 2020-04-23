@@ -12,9 +12,9 @@ class CreditFormTest(TestCase):
             'gas': 3,
             'travels': 3,
             'etc': 3,
-            'annual': "yes",
-            'credit_score': 100, 
-            'banks': "citi" 
+            'annual': "Yes",
+            'credit_score': "Excellent", 
+            'banks': "Citibank" 
         }
 
         form = CreditForm(data=data)
