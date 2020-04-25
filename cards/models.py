@@ -15,11 +15,6 @@ class Card (models.Model):
 	travelMultiplier= models.DecimalField(max_digits=10, decimal_places=5)
 	gasMultiplier= models.DecimalField(max_digits=10, decimal_places=5)
 
-
-	elseMultiplier=models.DecimalField(max_digits=10, decimal_places=5, default=0)
-	APR= models.DecimalField(max_digits=10, decimal_places=5, default=1)
-	bonusDisplay=models.TextField(blank=True,null=True)
-
 	elseMultiplier=models.DecimalField(max_digits=10, decimal_places=5, default=0)
 	APR= models.DecimalField(max_digits=10, decimal_places=5, default=1)
 	bonusDisplay=models.TextField(blank=True,null=True)
