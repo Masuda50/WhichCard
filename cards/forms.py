@@ -1,12 +1,13 @@
 from django import forms
 
+
 CREDIT_CHOICES = [('excellent', 'Excellent'), ('good', 'Good'), ('average', 'Average'), ('bad', 'Bad')]
 ANNUAL_CHOICES = [('yes', 'Yes'), ('no', 'No')]
 BANK_CHOICES   = [('chase', 'Chase'), ('citi', 'Citibank'), ('amex', 'American Express'), ('capital one', 'Capital One'), ('wells fargo','Wells Fargo'), ('bank of america', 'Bank of America'), ('all', 'All of the Above')]
 
 
-
 class CreditForm(forms.Form):
+
     groceries = forms.DecimalField(label='Groceries', min_value=0)
     dining = forms.DecimalField(label='Dining out', min_value=0)
     gas = forms.DecimalField(label='Gas', min_value=0)
