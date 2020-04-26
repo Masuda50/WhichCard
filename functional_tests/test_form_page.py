@@ -49,8 +49,7 @@ class TestFormPage(BaseFunctionalTest):
     def __check_form_data_submit_helper(self, data):
         assert data is not None
 
-        text_boxes = [field.find_element_by_tag_name("input") for field in
-                      self.browser.find_elements_by_class_name("controls")]
+        text_boxes = self.browser.find_elements_by_xpath("//input[@type='number']")
 
         for textbox in text_boxes:
             textbox.send_keys(data)
