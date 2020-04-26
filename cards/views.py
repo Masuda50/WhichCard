@@ -59,12 +59,18 @@ def get_info(request):
 
 
 def get_cards(card_param):
+    assert card_param is not None
+
     card = Card.objects.get(cardName=card_param)
     return card
 
 
 # The method will likely be split
 def get_best_cards(grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
+    # checking params are non negative values and are not empty
+    for parameter in locals().values():
+        assert parameter >= 0 and parameter is not None
+
     cards_by_value = ChosenCards()
     card_set = Card.objects.all()
 
@@ -81,11 +87,14 @@ def get_best_cards(grocery_input, dining_out_input, gas_input, travel_input, eve
 
     print('After sorting:')
     print(sorted_cards)
-    listofcards = list(sorted_cards.keys())
-    return listofcards
+
+    return list(sorted_cards.keys())
 
 
 def calculate_card_value(card, grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
+    for parameter in list(locals().values())[1:]:
+        assert parameter >= 0 and parameter is not None
+
     card_grocer_multiplier = card.groceryMultiplier
     card_restaurant_multiplier = card.restMultiplier
     card_gas_multiplier = card.gasMultiplier
@@ -102,6 +111,8 @@ def calculate_card_value(card, grocery_input, dining_out_input, gas_input, trave
 
 
 def sort_cards_by_value(cards):
+    assert cards is not None
+
     return dict(sorted(cards.items(), key=operator.itemgetter(1), reverse=True))
 
 
