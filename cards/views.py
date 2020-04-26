@@ -100,7 +100,7 @@ def user_qualifies_for_bonus(card, grocery_input, dining_out_input, gas_input, t
 
 def calculate_card_value(card, grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
     for parameter in list(locals().values())[1:]:
-        assert parameter >= 0 and parameter is not None
+        assert parameter is not None
 
     card_grocer_multiplier = card.groceryMultiplier
     card_restaurant_multiplier = card.restMultiplier
