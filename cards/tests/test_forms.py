@@ -1,5 +1,4 @@
 from django.test import TestCase
-# from django import forms
 from ..forms import CreditForm
 
 
@@ -13,13 +12,12 @@ class CreditFormTest(TestCase):
             'gas': 3,
             'travels': 3,
             'etc': 3,
-            'annual': "Yes",
-            'credit_score': "Excellent", 
-            'banks': "Citibank",
+            'credit_score': 'Good',
+            'annual': 'yes',
+            'banks': ['chase', 'citi', 'amex', 'capital one', 'bank of america', 'wells fargo'],
         }
 
         form = CreditForm(data=data)
-
         self.assertTrue(form.is_valid())
 
     # test invalid data in the form
