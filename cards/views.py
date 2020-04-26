@@ -63,7 +63,6 @@ def get_cards(card_param):
     return card
 
 
-# The method will likely be split
 def get_best_cards(grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
     cards_by_value = ChosenCards()
     card_set = Card.objects.all()
@@ -71,18 +70,25 @@ def get_best_cards(grocery_input, dining_out_input, gas_input, travel_input, eve
     for card in card_set:
         card_value = float(calculate_card_value(card, grocery_input, dining_out_input, gas_input, travel_input,
                                           everything_else_input))
-        print("%s value: %d" %(card.cardName, card_value))
+        if user_qualifies_for_bonus(card, grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
+            card_value += card.bonusValue
+
         cards_by_value.chosen_cards[card.cardName] = card_value
 
-    print('Before sorting:')
-    print(cards_by_value.chosen_cards)
-
     sorted_cards = sort_cards_by_value(cards_by_value.chosen_cards)
+    list_of_cards = list(sorted_cards.keys())
+    return list_of_cards
 
-    print('After sorting:')
-    print(sorted_cards)
-    listofcards = list(sorted_cards.keys())
-    return listofcards
+
+def user_qualifies_for_bonus(card, grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
+    user_spending = float((grocery_input + dining_out_input + gas_input + travel_input + everything_else_input)/12)
+    # to avoid division by zero
+    if card.bonusValue != 0 and card.bonusSpendMonths != 0:
+        card_bonus_value_requirement = float(card.bonusMinimumSpend / card.bonusSpendMonths)
+        if user_spending >= card_bonus_value_requirement:
+            return True
+
+    return False
 
 
 def calculate_card_value(card, grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
