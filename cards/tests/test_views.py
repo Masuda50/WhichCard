@@ -44,6 +44,9 @@ class CardsViewsTests(TestCase):
             'travels': 3,
             'clothes': 3,
             'etc': 3,
+            'credit_score': 'good',
+            'annual': 'yes',
+            'banks': 'all',
         }
 
         response = self.client.post(self.get_info_url, data)

@@ -12,10 +12,12 @@ class CreditFormTest(TestCase):
             'gas': 3,
             'travels': 3,
             'etc': 3,
+            'credit_score': 'Good',
+            'annual': 'yes',
+            'banks': ['chase', 'citi', 'amex', 'capital one', 'bank of america', 'wells fargo'],
         }
 
         form = CreditForm(data=data)
-
         self.assertTrue(form.is_valid())
 
     # test invalid data in the form
@@ -23,4 +25,4 @@ class CreditFormTest(TestCase):
         form = CreditForm(data={})
 
         self.assertFalse(form.is_valid())
-        self.assertEquals(len(form.errors), 5)
+        self.assertEquals(len(form.errors), 8)

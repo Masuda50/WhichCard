@@ -19,14 +19,15 @@ class Card (models.Model):
 	APR= models.DecimalField(max_digits=10, decimal_places=5, default=1)
 	bonusDisplay=models.TextField(blank=True,null=True)
 
-	bonusValue= models.IntegerField(default=1) 
+	bonusValue= models.IntegerField(default=1)
 	link=models.TextField()
 	creditScore= models.CharField(max_length=200)
+	bonusMinimumSpend=models.IntegerField()
+	bonusSpendMonths=models.IntegerField()
+
 
 
 
 
 	def __str__(self):
 		return self.cardName
-
-
