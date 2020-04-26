@@ -1,0 +1,23 @@
+
+.navbar {
+     background-color: black;
+     position :relative;
+     overflow : hidden ;
+}
+
+
+.navbar a {
+     float : right;
+     color: white;
+     padding: 14px 16px;
+     font-size: 17px;
+}
+
+.title  {
+     float : left;
+     color: white;
+     font-size: 17px;
+     font-weight: bold;
+}
+
+
