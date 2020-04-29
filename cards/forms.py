@@ -7,12 +7,11 @@ BANK_CHOICES   = [('chase', 'Chase'), ('citi', 'Citibank'), ('amex', 'American E
 
 
 class CreditForm(forms.Form):
-
-    groceries = forms.IntegerField(label='Groceries', min_value=0)
-    dining = forms.IntegerField(label='Dining out', min_value=0)
-    gas = forms.IntegerField(label='Gas', min_value=0)
-    travels = forms.IntegerField(label='Travels', min_value=0)
-    etc = forms.IntegerField(label='Everything Else', min_value=0)
-    credit_score = forms.CharField(label='What is your credit score?', widget= forms.Select(choices= CREDIT_CHOICES))
+    groceries = forms.DecimalField(label='Groceries', min_value=0, widget=forms.NumberInput(attrs={'style':'width:300px'}))
+    dining = forms.DecimalField(label='Dining out', min_value=0, widget=forms.NumberInput(attrs={'style':'width:300px'}))
+    gas = forms.DecimalField(label='Gas', min_value=0, widget=forms.NumberInput(attrs={'style':'width:300px'}))
+    travels = forms.DecimalField(label='Travels', min_value=0, widget=forms.NumberInput(attrs={'style':'width:300px'}))
+    etc = forms.DecimalField(label='Everything Else', min_value=0, widget=forms.NumberInput(attrs={'style':'width:300px'}))
+    credit_score = forms.CharField(label='What is your credit score?', widget= forms.Select(choices= CREDIT_CHOICES, attrs={'style':'width:300px'}))
     annual= forms.ChoiceField(label='Are you only interested in cards with no annual fee?', widget= forms.RadioSelect, choices= ANNUAL_CHOICES, initial= 'no')
     banks = forms.MultipleChoiceField(label= 'Show cards from the following banks:', widget= forms.CheckboxSelectMultiple, choices= BANK_CHOICES, initial= 'all')
