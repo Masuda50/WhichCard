@@ -1,8 +1,19 @@
-<div class="container">
-    <h3>{{value}}</h3>
-    <p><b>Bank Name: </b>{{value.bankName}}</p>
-    <p><b>Annual Fee: </b>{{value.annualFee}}</p>
-    <p><b>Rewards Type: </b> {{value.rewardsType}}</p>
-    <p><b>Credit Score: </b> {{value.creditScore}}</p>
-    <button type="submit">Apply</button>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/cards.css' %}"/>
+<div class="display" >
+    <h3 class=" value">{{value}}</h3>
+    <div class="grid-container">
+        <div class="grid-item"><img src="{{STATIC_URL}}https://res.cloudinary.com/value-penguin/image/upload/dpr_1.0,f_auto,q_auto/unavailable-card-update_c5bzxf.png" height="150" width="225"/></div>
+       <div class="grid-container">
+        <div class="grid-item"><b>Bank Name: </b><br/>{{value.bankName}}</div>
+        <div class="grid-item"><b>Annual Fee: </b><br/>{{value.annualFee}}</div>
+        <div class="grid-item"><b>Rewards Type: </b><br/> {{value.rewardsType}}</div>
+        <div class="grid-item"><b>Credit Score: </b><br/> {{value.creditScore}}</div>
+       </div>
+        <br/>
+        <br/>
+     </div>
+    <br/>
+<div class="space"></div>
+
 </div>
