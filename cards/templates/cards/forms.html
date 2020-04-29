@@ -1,3 +1,4 @@
+
 {% extends "cards/homepage.html" %}
 {% load crispy_forms_tags %}
 
@@ -12,9 +13,9 @@
         <input type="submit" value="Submit">
     </form>
 
-    <div>
+   <div>
         {% if list_of_cards %}
-            <h2>Best Cards</h2>
+        <h2>Best Cards</h2>
         {% endif %}
         {% for card in best_cards %}
         {% include 'cards/display_cards.html' with value=card %}
@@ -23,3 +24,4 @@
 </div>
 
 {% endblock %}
+
