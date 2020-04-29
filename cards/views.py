@@ -45,7 +45,8 @@ def get_info(request):
             list_of_cards = get_best_cards(groceries, dining_out, gas, travel, everything_else)
             best_cards=[]
 
-            for card in list_of_cards:
+            for i in range(5):
+                card = list_of_cards[i]
                 card_obj = get_cards(card)
                 best_cards.append(card_obj)
 
