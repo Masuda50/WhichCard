@@ -1,12 +1,15 @@
 {% extends "cards/homepage.html" %}
-<!-- {% load crispy_forms_tags %} -->
+{% load crispy_forms_tags %}
 
 {% block content %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 
 </head>
 
@@ -15,18 +18,18 @@
     <div class = "container">
 <h1>About Us</h1>
 
-<h2>Goal</h2>
-<h4>To develop a tool that will allow users to easily compare different rewards credit cards based on how they shop. Allow even a novice credit card user to get a card that will allow him or her to earn the most points, miles or cash back they can.</h4>
+<h4>Goal</h4>
+<p class="font-weight-normal">To develop a tool that will allow users to easily compare different rewards credit cards based on how they shop. Allow even a novice credit card user to get a card that will allow him or her to earn the most points, miles or cash back they can.</p>
     
-<h2>Product</h2>
+<h4>Product</h4>
+<p class="font-weight-normal">We’ll develop a credit card comparison tool that accounts for peoples’ spending habits, and instantly ranks credit card options from America’s top 6 banks - from most to least rewarding. The tool will also display to users their first year rewards value estimate, and provide a few details about each card so they can quickly compare cards side-by-side.
+    
+    <p class="font-weight-normal"></p>We can collect information on credit cards from here: https://www.creditcards.com/rewards-cards/</p>
+    
+    <p class="font-weight-normal"> We can collect the value of points/miles here: https://thepointsguy.com/guide/monthly-valuations/</p>
+    
+    <p class="font-weight-normal">Cash back is easy, because that’s just straight money (example 1% cash back on $100 is just $1)</p>
 
-    <h4>We’ll develop a credit card comparison tool that accounts for peoples’ spending habits, and instantly ranks credit card options from America’s top 6 banks - from most to least rewarding. The tool will also display to users their first year rewards value estimate, and provide a few details about each card so they can quickly compare cards side-by-side.
-    
-        We can collect information on credit cards from here: https://www.creditcards.com/rewards-cards/
-        
-        We can collect the value of points/miles here: https://thepointsguy.com/guide/monthly-valuations/
-        
-        Cash back is easy, because that’s just straight money (example 1% cash back on $100 is just $1)</h4>
     </div>
 </body>
 </html>
