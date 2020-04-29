@@ -4,7 +4,8 @@
 {% block content %}
 <div class="container">
     <h1>Which credit card should you get?</h1>
-    <h4>Enter how much you spend each year in these categories (approximately) and provide us with more information. Then hit submit.</h4>
+    <h4>Enter how much you spend each year in these categories (approximately) and provide us with more information.
+        Then hit submit.</h4>
 
     <form method="POST">
         {% csrf_token %}
@@ -14,7 +15,7 @@
 
     <div>
         {% if list_of_cards %}
-            <h2>Best Cards</h2>
+        <h2>Best Cards</h2>
         {% endif %}
         {% for card in best_cards %}
         {% include 'cards/display_cards.html' with value=card %}
