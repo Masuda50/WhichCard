@@ -3,7 +3,7 @@ from django import forms
 
 CREDIT_CHOICES = [('excellent', 'Excellent'), ('good', 'Good'), ('average', 'Average'), ('bad', 'Bad')]
 ANNUAL_CHOICES = [('yes', 'Yes'), ('no', 'No')]
-BANK_CHOICES   = [('chase', 'Chase'), ('citi', 'Citibank'), ('amex', 'American Express'), ('capital one', 'Capital One'), ('wells fargo','Wells Fargo'), ('bank of america', 'Bank of America'), ('all', 'All of the Above')]
+BANK_CHOICES   = [('Chase', 'Chase'), ('Citibank', 'Citibank'), ('American Express', 'American Express'), ('Capital One', 'Capital One'), ('Wells Fargo','Wells Fargo'), ('Bank of America', 'Bank of America'), ('all', 'All of the Above')]
 
 
 class CreditForm(forms.Form):
