@@ -45,7 +45,8 @@ def get_info(request):
             list_of_cards = get_best_cards(groceries, dining_out, gas, travel, everything_else)
             best_cards=[]
 
-            for card in list_of_cards:
+            for i in range(5):
+                card = list_of_cards[i]
                 card_obj = get_cards(card)
                 best_cards.append(card_obj)
 
@@ -85,7 +86,6 @@ def get_best_cards(grocery_input, dining_out_input, gas_input, travel_input, eve
     list_of_cards = list(sorted_cards.keys())
     return list_of_cards
 
-
 def user_qualifies_for_bonus(card, grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
     for parameter in list(locals().values())[1:]:
         assert parameter is not None
@@ -107,7 +107,6 @@ def user_qualifies_for_bonus(card, grocery_input, dining_out_input, gas_input, t
             return True
 
     return False
-
 
 def calculate_card_value(card, grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
     for parameter in list(locals().values())[1:]:

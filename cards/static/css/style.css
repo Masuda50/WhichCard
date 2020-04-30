@@ -1,6 +1,6 @@
 
 .navbar {
-     background-color: black;
+     background-color: lightskyblue;
      position :relative;
      overflow : hidden ;
 }
@@ -19,5 +19,7 @@
      font-size: 17px;
      font-weight: bold;
 }
+
+
 
 

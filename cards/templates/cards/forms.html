@@ -1,20 +1,21 @@
+
 {% extends "cards/homepage.html" %}
 {% load crispy_forms_tags %}
 
 {% block content %}
 <div class="container">
-    <h1>Which credit card should you get?</h1>
-    <h4>Enter how much you spend each year in these categories (approximately) and provide us with more information. Then hit submit.</h4>
+    <h1 class = "display-4">Which credit card should you get?</h1>
+    <p class = "text-primary">Enter how much you spend each year in these categories (approximately) and provide us with more information. Then hit submit.</p>
 
     <form method="POST">
         {% csrf_token %}
         {{ form|crispy }}
-        <input type="submit" value="Submit">
+        <input class="btn btn-primary" type="submit" value="Submit">
     </form>
 
-    <div>
+   <div>
         {% if list_of_cards %}
-            <h2>Best Cards</h2>
+        <h2>Best Cards</h2>
         {% endif %}
         {% for card in best_cards %}
         {% include 'cards/display_cards.html' with value=card %}
@@ -23,3 +24,4 @@
 </div>
 
 {% endblock %}
+
