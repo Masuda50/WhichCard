@@ -36,19 +36,27 @@ def get_info(request):
             annual = form.cleaned_data['annual']
             banks = form.cleaned_data['banks']
             if banks == ['all']:
-                banks = ['chase', 'citi', 'amex', 'capital one', 'bank of america', 'wells fargo']
+                banks = ['Chase', 'Citibank', 'American Express', 'Capital One', 'Bank of America', 'Wells Fargo']
             # test, retrieving additional info
             print(credit_score)
             print(annual)
             print(banks)
 
             list_of_cards = get_best_cards(groceries, dining_out, gas, travel, everything_else)
+            okay_cards=[]
             best_cards=[]
 
-            for i in range(5):
-                card = list_of_cards[i]
+            for card in list_of_cards:
                 card_obj = get_cards(card)
-                best_cards.append(card_obj)
+                okay_cards.append(card_obj)
+
+            filtered_cards = filter_cards(banks, credit_score, annual, okay_cards);
+
+            if len(filtered_cards) > 6:
+                for i in range(5):
+                    best_cards.append(filtered_cards[i])
+            else:
+                best_cards = filtered_cards
 
             context = {}
             context['best_cards'] = best_cards
@@ -68,11 +76,16 @@ def get_cards(card_param):
 
 def get_best_cards(grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
     # checking params are non negative values and are not empty
-    for parameter in locals().values():
-        assert parameter >= 0 and parameter is not None
+
+    assert grocery_input >= 0 and grocery_input is not None
+    assert dining_out_input >= 0 and dining_out_input is not None
+    assert gas_input >= 0 and gas_input is not None
+    assert travel_input >= 0 and travel_input is not None
+    assert everything_else_input >= 0 and everything_else_input is not None
 
     cards_by_value = ChosenCards()
     card_set = Card.objects.all()
+
 
     for card in card_set:
         card_value = float(calculate_card_value(card, grocery_input, dining_out_input, gas_input, travel_input,
@@ -117,6 +130,42 @@ def calculate_card_value(card, grocery_input, dining_out_input, gas_input, trave
                    + (everything_else_input * card_everything_else_multiplier)) * card_reward_value) - card_annual_fee)
 
     return card_value
+
+def filter_cards(banks_input, credit_score_input, annual_input, card_list):
+    card_set = card_list
+    f1 = []
+    f2 = []
+    f3 = []
+
+    if annual_input == 'yes':
+        for card in card_set:
+            if card.annualFee == 0:
+                f1.append(card)
+    else: 
+        for card in card_set:
+            f1.append(card)
+
+    if credit_score_input == 'bad':
+        for i in f1:
+            if i.creditScore == "Bad":
+                f2.append(i)
+    elif credit_score_input == 'average':
+        for i in f1:
+            if i.creditScore == "Bad" or i.creditScore == "Average":
+                f2.append(i)
+    elif credit_score_input == 'good':
+        for i in f1:
+            if i.creditScore == "Bad" or i.creditScore == "Average" or i.creditScore == "Good":
+                f2.append(i)
+    else: 
+        for i in f1:
+            f2.append(i)
+
+    for k in f2:
+        if k.bankName in banks_input:
+            f3.append(k)
+
+    return f3;
 
 
 def sort_cards_by_value(cards):
