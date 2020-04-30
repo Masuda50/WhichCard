@@ -52,7 +52,7 @@ def get_info(request):
 
             filtered_cards = filter_cards(banks, credit_score, annual, okay_cards);
 
-            if len(filtered_cards) > 6:
+            if len(filtered_cards) > 5:
                 for i in range(5):
                     best_cards.append(filtered_cards[i])
             else:
