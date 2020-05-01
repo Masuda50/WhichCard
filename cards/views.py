@@ -111,15 +111,6 @@ def user_qualifies_for_bonus(card, grocery_input, dining_out_input, gas_input, t
         if user_spending >= card_bonus_value_requirement:
             return True
 
-def user_qualifies_for_bonus(card, grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
-    user_spending = float((grocery_input + dining_out_input + gas_input + travel_input + everything_else_input)/12)
-    # to avoid division by zero
-    if card.bonusValue != 0 and card.bonusSpendMonths != 0:
-        card_bonus_value_requirement = float(card.bonusMinimumSpend / card.bonusSpendMonths)
-        if user_spending >= card_bonus_value_requirement:
-            return True
-
-    return False
 
 def calculate_card_value(card, grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
     for parameter in list(locals().values())[1:]:
