@@ -10,7 +10,7 @@ class TestFormPage(BaseFunctionalTest):
         super().setUp()
         self.card = Card(
             cardName="Chase Freedom",
-            bankName="Chase Bank",
+            bankName="Chase",
             annualFee=0,
             rewardsType="Cash Back",
             rewardValue=0.01,
@@ -70,6 +70,6 @@ class TestFormPage(BaseFunctionalTest):
 
     # check valid form populates results on  the page
     def __check_valid_form_results_populated(self):
-        container = self.browser.find_elements_by_class_name("container")
-        self.assertLess(1, len(container))
+        results = self.browser.find_elements_by_class_name("display")
+        self.assertLess(0, len(results))
 
