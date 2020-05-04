@@ -1,24 +1,2 @@
+{% extends "cards/index.html" %}
 {% load static %}
-<DOCTYPE html>
-
-<html lang="en">
-<head>
-<title>Which Card</title>
-</head>
-
-<body>
-
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
-<div class="navbar">
-   <div class="title">
-    <p> Which Card</p>
-  </div>
-      <a href="{% url 'cards:aboutus' %}">About Us</a>
-      <a href="{% url 'cards:forms' %}">Forms</a>
-      <a class="active" href="{% url 'cards:home' %}">Home</a>
-</div>
-
-</div>
-{% block content %}
-{% endblock %}
-</body>
