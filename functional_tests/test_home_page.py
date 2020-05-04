@@ -10,7 +10,7 @@ class TestHomePage(BaseFunctionalTest):
 
     # test that the homepage was loaded
     def test_user_first_visit(self):
-        for i in range(5):
+        for i in range(6):
             self.browser.find_element_by_tag_name('button').click()
         landing = self.browser.find_element_by_tag_name('nav')
         self.assertEqual(
