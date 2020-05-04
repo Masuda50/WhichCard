@@ -71,5 +71,6 @@ class TestFormPage(BaseFunctionalTest):
     # check valid form populates results on  the page
     def __check_valid_form_results_populated(self):
         container = self.browser.find_elements_by_class_name("container")
-        self.assertLess(1, len(container))
+        self.assertGreaterEqual(5, len(container))
+        self.assertLessEqual(1, len(container))
 
