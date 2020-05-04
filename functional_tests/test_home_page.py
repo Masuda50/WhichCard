@@ -27,7 +27,7 @@ class TestHomePage(BaseFunctionalTest):
 
     # test click Home in navbar
     def test_home_page_redirects_to_home(self):
-        self.__check_navbar_redirection_to("Home", "cards:home")
+        self.__check_navbar_redirection_to("Home\n(current)", "cards:home")
 
     # helper to test navigation bar re-directions
     def __check_navbar_redirection_to(self, element, destination):
