@@ -45,14 +45,19 @@
      border-bottom: 20px white !important;
 } 
 
-/* .aboutuss:active{
-     /* border-bottom: 10px white; */
-     /* color: black;
-} */ */
+ /* .nav-item a:active{
+     border-bottom: 10px white; 
+     color: black;
+} 
 
-div.navbar-nav a:active{
-     background-color: white !important;
+/* .nav-item a:focus{
+     border-bottom: 10px white; 
+     color: black;
+}   */
 
-}
+.nav-item a:target{
+     border-bottom: 10px white; 
+     color: black;
+} 
 
 
