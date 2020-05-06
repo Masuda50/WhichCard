@@ -1,25 +1,58 @@
 
-.navbar {
-     background-color: lightskyblue;
+.mynav {
+     background-color: #498af2;
      position :relative;
      overflow : hidden ;
 }
 
-
-.navbar a {
-     float : right;
-     color: white;
-     padding: 14px 16px;
-     font-size: 17px;
+.nav-item a{
+     margin-left: 25px;
 }
 
-.title  {
+
+.whichcard{
      float : left;
      color: white;
-     font-size: 17px;
-     font-weight: bold;
+     font-size: 23px !important;
+     /* font-weight: bold; */
 }
 
 
+.homee {
+     float : right;
+     color: white;
+     /* padding: 14px 16px; */
+     font-size: 17px;
+}
+
+.formss {
+     float : right;
+     color: #d9edfc;
+     /* padding: 14px 16px; */
+     font-size: 17px;
+}
+
+.aboutuss {
+     float : right;
+     color: #d9edfc;
+     /* padding: 14px 16px; */
+     font-size: 17px;
+}
+
+ .mynav a:hover{
+      /* background-color: white;  */
+      text-decoration: none;
+     border-bottom: 20px white !important;
+} 
+
+/* .aboutuss:active{
+     /* border-bottom: 10px white; */
+     /* color: black;
+} */ */
+
+div.navbar-nav a:active{
+     background-color: white !important;
+
+}
 
 
