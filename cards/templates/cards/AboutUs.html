@@ -1,3 +1,4 @@
+
 {% extends "cards/index.html" %}
 {% load crispy_forms_tags %}
 
@@ -5,6 +6,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<a class="nav-item nav-link" href="{% url 'cards:home' %}">Home<span class="sr-only">(current)</span></a>
+<a class="nav-item nav-link" href="{% url 'cards:forms' %}">Forms</a>
+<a class="nav-item nav-link active" href="{% url 'cards:aboutus' %}">About Us</a>
+</div>
+</div>
+</nav>
+
 
 <body>
     <div class = "container">
