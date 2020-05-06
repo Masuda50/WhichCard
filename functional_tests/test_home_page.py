@@ -10,7 +10,7 @@ class TestHomePage(BaseFunctionalTest):
 
     # test that the homepage was loaded
     def test_user_first_visit(self):
-        for i in range(5):
+        for i in range(6):
             self.browser.find_element_by_tag_name('button').click()
         landing = self.browser.find_element_by_tag_name('nav')
         self.assertEqual(
@@ -27,7 +27,7 @@ class TestHomePage(BaseFunctionalTest):
 
     # test click Home in navbar
     def test_home_page_redirects_to_home(self):
-        self.__check_navbar_redirection_to("Home", "cards:home")
+        self.__check_navbar_redirection_to("Home\n(current)", "cards:home")
 
     # helper to test navigation bar re-directions
     def __check_navbar_redirection_to(self, element, destination):

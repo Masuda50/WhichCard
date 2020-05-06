@@ -111,7 +111,6 @@ def user_qualifies_for_bonus(card, grocery_input, dining_out_input, gas_input, t
         if user_spending >= card_bonus_value_requirement:
             return True
 
-    return False
 
 def calculate_card_value(card, grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
     for parameter in list(locals().values())[1:]:
