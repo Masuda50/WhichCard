@@ -4,6 +4,16 @@
 {% block content %}
 
 <div class= "container">
+
+    <h2 class = "display-4">We recommend these cards for you!</h2>
+    <!-- <p class = "text-primary">Some additional words below the caption</p> -->
+
+    <form>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="btn btn-primary" type="submit" value="Change Spending Settings">
+    </form>
+
     {% if list_of_cards %}
     <h2>Best Cards</h2>
     {% endif %}

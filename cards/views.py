@@ -20,6 +20,9 @@ def index(request):
 def get_display_cards(request):
     return render(request, 'cards/display_cards.html')
 
+# def show_cards(request):
+#     if request.method == 'POST':
+#         return render(request, 'cards/show_cards.html')
 
 def get_info(request):
     # if this is a POST request we need to process the form data
