@@ -3,7 +3,7 @@ from django import forms
 
 CREDIT_CHOICES = [('excellent', 'Excellent'), ('good', 'Good'), ('average', 'Average'), ('bad', 'Bad')]
 ANNUAL_CHOICES = [('yes', 'Yes'), ('no', 'No')]
-BANK_CHOICES   = [('Chase', 'Chase'), ('Citibank', 'Citibank'), ('American Express', 'American Express'), ('Capital One', 'Capital One'), ('Wells Fargo','Wells Fargo'), ('Bank of America', 'Bank of America'), ('all', 'All of the Above')]
+BANK_CHOICES = [('Chase', 'Chase'), ('Citibank', 'Citibank'), ('American Express', 'American Express'), ('Capital One', 'Capital One'), ('Wells Fargo','Wells Fargo'), ('Bank of America', 'Bank of America'), ('all', 'All of the Above')]
 
 
 class CreditForm(forms.Form):
@@ -15,3 +15,5 @@ class CreditForm(forms.Form):
     credit_score = forms.CharField(label='What is your credit score?', widget= forms.Select(choices= CREDIT_CHOICES, attrs={'style':'width:300px'}))
     annual= forms.ChoiceField(label='Are you only interested in cards with no annual fee?', widget= forms.RadioSelect, choices= ANNUAL_CHOICES, initial= 'no')
     banks = forms.MultipleChoiceField(label= 'Show cards from the following banks:', widget= forms.CheckboxSelectMultiple, choices= BANK_CHOICES, initial= 'all')
+
+

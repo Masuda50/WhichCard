@@ -1,0 +1,15 @@
+{% extends "cards/index.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+  <h1 class = "display-4">Submit Feedback</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="btn btn-primary" type="submit" value="Submit">
+    </form>
+</div>
+
+{% endblock %}
+
