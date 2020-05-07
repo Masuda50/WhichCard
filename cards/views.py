@@ -12,6 +12,10 @@ import operator
 def home(request):
     return render(request, 'cards/homepage.html')
 
+def index(request):
+    context= {}
+    return render(request, 'cards/homepage.html', context)
+
 
 def get_display_cards(request):
     return render(request, 'cards/display_cards.html')
@@ -50,7 +54,7 @@ def get_info(request):
                 card_obj = get_cards(card)
                 okay_cards.append(card_obj)
 
-            filtered_cards = filter_cards(banks, credit_score, annual, okay_cards);
+            filtered_cards = filter_cards(banks, credit_score, annual, okay_cards)
 
             if len(filtered_cards) > 5:
                 for i in range(5):
@@ -164,7 +168,7 @@ def filter_cards(banks_input, credit_score_input, annual_input, card_list):
         if k.bankName in banks_input:
             f3.append(k)
 
-    return f3;
+    return f3
 
 
 def sort_cards_by_value(cards):
