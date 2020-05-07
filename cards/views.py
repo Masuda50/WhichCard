@@ -9,12 +9,12 @@ import operator
 # Create your views here.
 
 
-def home(request):
-    return render(request, 'cards/homepage.html')
+# def home(request):
+#     return render(request, 'cards/homepage.html')
 
 def index(request):
-    context= {}
-    return render(request, 'cards/homepage.html', context)
+    context= {"home": "active"}
+    return render(request, 'cards/index.html', context)
 
 
 def get_display_cards(request):
@@ -63,12 +63,15 @@ def get_info(request):
                 best_cards = filtered_cards
 
             context = {}
+            context = {"forms": "active"}
             context['best_cards'] = best_cards
             return render(request, 'cards/forms.html', context)
     # if a GET (or any other method) we'll create a blank form
     else:
         form = CreditForm()
-    return render(request, 'cards/forms.html', {'form': form})
+        context = {"forms": "active"}
+        context['form']= form
+    return render(request, 'cards/forms.html', context)
 
 
 def get_cards(card_param):
@@ -178,4 +181,5 @@ def sort_cards_by_value(cards):
 
 
 def about_us(request):
-    return render(request, 'cards/AboutUs.html')
+    context= {"about_us": "active"}
+    return render(request, 'cards/AboutUs.html', context)
