@@ -65,7 +65,7 @@ def get_info(request):
             context = {}
             context = {"forms": "active"}
             context['best_cards'] = best_cards
-            return render(request, 'cards/forms.html', context)
+            return render(request, 'cards/show_cards.html', context)
     # if a GET (or any other method) we'll create a blank form
     else:
         form = CreditForm()

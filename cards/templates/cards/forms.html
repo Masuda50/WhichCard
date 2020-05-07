@@ -16,14 +16,6 @@
         <input class="btn btn-primary" type="submit" value="Submit">
     </form>
 
-   <div>
-        {% if list_of_cards %}
-        <h2>Best Cards</h2>
-        {% endif %}
-        {% for card in best_cards %}
-        {% include 'cards/display_cards.html' with value=card %}
-        {% endfor %}
-    </div>
 </div>
 
 {% endblock %}
