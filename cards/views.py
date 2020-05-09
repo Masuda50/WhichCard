@@ -6,6 +6,8 @@ from django.shortcuts import redirect
 from cards.forms import CreditForm
 from .object import ChosenCards
 import operator
+
+
 # Create your views here.
 
 
@@ -43,8 +45,8 @@ def get_info(request):
             print(banks)
 
             list_of_cards = get_best_cards(groceries, dining_out, gas, travel, everything_else)
-            okay_cards=[]
-            best_cards=[]
+            okay_cards = []
+            best_cards = []
 
             for card in list_of_cards:
                 card_obj = get_cards(card)
@@ -86,11 +88,11 @@ def get_best_cards(grocery_input, dining_out_input, gas_input, travel_input, eve
     cards_by_value = ChosenCards()
     card_set = Card.objects.all()
 
-
     for card in card_set:
         card_value = float(calculate_card_value(card, grocery_input, dining_out_input, gas_input, travel_input,
-                                          everything_else_input))
-        if user_qualifies_for_bonus(card, grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
+                                                everything_else_input))
+        if user_qualifies_for_bonus(card, grocery_input, dining_out_input, gas_input, travel_input,
+                                    everything_else_input):
             card_value += card.bonusValue
 
         cards_by_value.chosen_cards[card.cardName] = card_value
@@ -99,11 +101,12 @@ def get_best_cards(grocery_input, dining_out_input, gas_input, travel_input, eve
     list_of_cards = list(sorted_cards.keys())
     return list_of_cards
 
+
 def user_qualifies_for_bonus(card, grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
     for parameter in list(locals().values())[1:]:
         assert parameter is not None
 
-    user_spending = float((grocery_input + dining_out_input + gas_input + travel_input + everything_else_input)/12)
+    user_spending = float((grocery_input + dining_out_input + gas_input + travel_input + everything_else_input) / 12)
 
     # to avoid division by zero
     if card.bonusValue != 0 and card.bonusSpendMonths != 0:
@@ -125,10 +128,12 @@ def calculate_card_value(card, grocery_input, dining_out_input, gas_input, trave
     card_annual_fee = card.annualFee
 
     card_value = float((((grocery_input * card_grocer_multiplier) + (dining_out_input * card_restaurant_multiplier)
-                   + (gas_input * card_gas_multiplier) + (travel_input * card_travel_multiplier)
-                   + (everything_else_input * card_everything_else_multiplier)) * card_reward_value) - card_annual_fee)
+                         + (gas_input * card_gas_multiplier) + (travel_input * card_travel_multiplier)
+                         + (
+                                     everything_else_input * card_everything_else_multiplier)) * card_reward_value) - card_annual_fee)
 
     return card_value
+
 
 def filter_cards(banks_input, credit_score_input, annual_input, card_list):
     card_set = card_list
@@ -140,7 +145,7 @@ def filter_cards(banks_input, credit_score_input, annual_input, card_list):
         for card in card_set:
             if card.annualFee == 0:
                 f1.append(card)
-    else: 
+    else:
         for card in card_set:
             f1.append(card)
 
@@ -156,7 +161,7 @@ def filter_cards(banks_input, credit_score_input, annual_input, card_list):
         for i in f1:
             if i.creditScore == "Bad" or i.creditScore == "Average" or i.creditScore == "Good":
                 f2.append(i)
-    else: 
+    else:
         for i in f1:
             f2.append(i)
 
@@ -175,3 +180,7 @@ def sort_cards_by_value(cards):
 
 def about_us(request):
     return render(request, 'cards/AboutUs.html')
+
+
+def submit_feedback(request):
+    return render(request, 'cards/submit_feedback.html')
