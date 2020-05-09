@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from .models import Card
 from django.shortcuts import redirect
 from cards.forms import CreditForm
+from cards.forms import FeedbackForm
 from .object import ChosenCards
 import operator
 
@@ -130,7 +131,7 @@ def calculate_card_value(card, grocery_input, dining_out_input, gas_input, trave
     card_value = float((((grocery_input * card_grocer_multiplier) + (dining_out_input * card_restaurant_multiplier)
                          + (gas_input * card_gas_multiplier) + (travel_input * card_travel_multiplier)
                          + (
-                                     everything_else_input * card_everything_else_multiplier)) * card_reward_value) - card_annual_fee)
+                                 everything_else_input * card_everything_else_multiplier)) * card_reward_value) - card_annual_fee)
 
     return card_value
 
@@ -183,4 +184,5 @@ def about_us(request):
 
 
 def submit_feedback(request):
-    return render(request, 'cards/submit_feedback.html')
+    form = FeedbackForm()
+    return render(request, 'cards/submit_feedback.html', {'form': form})
