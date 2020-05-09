@@ -12,10 +12,9 @@ class CreditFormTest(TestCase):
             'gas': 3,
             'travels': 3,
             'etc': 3,
-            'credit_score': 'good',
-            'annual': 'no',
-            'banks': ['Chase', 'Citibank', 'American Express', 'Capital One'
-                        , 'Wells Fargo', 'Bank of America'],
+            'credit_score': 'Good',
+            'annual': 'yes',
+            'banks': ['Chase', 'Citibank', 'American Express', 'Capital One', 'Wells Fargo', 'Bank of America','all'],
         }
 
         form = CreditForm(data=data)
