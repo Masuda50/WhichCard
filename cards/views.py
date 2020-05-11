@@ -7,6 +7,8 @@ from cards.forms import CreditForm
 from cards.forms import FeedbackForm
 from .object import ChosenCards
 import operator
+from django.core.mail import EmailMessage
+
 
 
 # Create your views here.
@@ -63,6 +65,7 @@ def get_info(request):
 
             context = {}
             context['best_cards'] = best_cards
+
             return render(request, 'cards/forms.html', context)
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -184,5 +187,42 @@ def about_us(request):
 
 
 def submit_feedback(request):
-    form = FeedbackForm()
-    return render(request, 'cards/submit_feedback.html', {'form': form})
+    if request.method == "POST":
+        form = FeedbackForm(request.POST)
+        if form.is_valid(): #if the form is valid get all values 
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            category = form.cleaned_data['category']
+            subject = form.cleaned_data['subject']
+            body = form.cleaned_data['body']
+            
+            MessageString = 'NAME: '+ name + "<br> " + 'EMAIL: ' +  email + "<br>" + 'SUBJECT: ' + subject+ '<br>' + 'BODY: '+ body
+
+            #confirmation email send to the user 
+            confirmation = EmailMessage(
+                    'WhichCard Confirmation Email',
+                    'Our team at WhichCard has recieved your feedback and will review it shortly. Thank-you for using WhichCard!',
+                    'noreplywhiteboard001@gmail.com',
+                    [email,],
+            )
+            confirmation.content_subtype = "html"
+            confirmation.send(fail_silently=False)
+
+            #email containing data sent to out email
+            msg = EmailMessage(
+                    category + ' feedback from a user',
+                    MessageString,
+                    'noreplywhiteboard001@gmail.com',
+                    ['noreplywhiteboard001@gmail.com',],
+            )
+
+            msg.content_subtype = "html"
+            msg.send()
+
+            form = FeedbackForm()
+            return render(request, 'cards/submit_feedback.html', {'form': form})
+
+
+    else:
+        form = FeedbackForm()
+        return render(request, 'cards/submit_feedback.html', {'form': form})
