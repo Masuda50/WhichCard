@@ -26,6 +26,7 @@ def get_display_cards(request):
 
 def get_info(request):
     # if this is a POST request we need to process the form data
+    context = {}
     print("IN THE FORM")  # testing if we're in the method
     if request.method == 'POST':
         print("FORM IS VALID---")  # testing whether  form can be submitted
@@ -64,14 +65,13 @@ def get_info(request):
                     best_cards.append(filtered_cards[i])
             else:
                 best_cards = filtered_cards
-
-            context = {}
             context = {"forms": "active"}
             context['best_cards'] = best_cards
             return render(request, 'cards/show_cards.html', context)
     # if a GET (or any other method) we'll create a blank form
     else:
         form = CreditForm()
+        # context = {}
         context = {"forms": "active"}
         context['form']= form
     return render(request, 'cards/forms.html', context)
