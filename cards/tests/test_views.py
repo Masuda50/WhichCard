@@ -7,7 +7,7 @@ class CardsViewsTests(TestCase):
     # create variables on start of tests
     def setUp(self):
         self.client = Client()
-        self.home_url = reverse('cards:home')
+        self.home_url = reverse('cards:index')
         self.about_us_url = reverse('cards:aboutus')
         self.display_cards_url = reverse('cards:display_cards')
         self.get_info_url = reverse('cards:forms')
