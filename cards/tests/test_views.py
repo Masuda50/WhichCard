@@ -11,7 +11,7 @@ class CardsViewsTests(TestCase):
         self.about_us_url = reverse('cards:aboutus')
         self.display_cards_url = reverse('cards:display_cards')
         self.get_info_url = reverse('cards:forms')
-        self.submit_feedback_url = reverse('cards: submit_feedback')
+        self.submit_feedback_url = reverse('cards:submit_feedback')
 
     # test home page view
     def test_home_view_GET(self):
