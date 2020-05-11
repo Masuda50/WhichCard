@@ -193,8 +193,8 @@ def sort_cards_by_value(cards):
 
 
 def about_us(request):
-<<<<<<< HEAD
-    return render(request, 'cards/AboutUs.html')
+    context= {"about_us": "active"}
+    return render(request, 'cards/AboutUs.html', context)
 
 
 def submit_feedback(request):
@@ -237,7 +237,3 @@ def submit_feedback(request):
     else:
         form = FeedbackForm()
         return render(request, 'cards/submit_feedback.html', {'form': form})
-=======
-    context= {"about_us": "active"}
-    return render(request, 'cards/AboutUs.html', context)
->>>>>>> origin/frontend65
