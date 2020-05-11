@@ -4,21 +4,34 @@ from django.http import HttpResponseRedirect
 from .models import Card
 from django.shortcuts import redirect
 from cards.forms import CreditForm
+from cards.forms import FeedbackForm
 from .object import ChosenCards
 import operator
+from django.core.mail import EmailMessage
+
+
+
 # Create your views here.
 
 
-def home(request):
-    return render(request, 'cards/homepage.html')
+# def home(request):
+#     return render(request, 'cards/homepage.html')
+
+def index(request):
+    context= {"home": "active"}
+    return render(request, 'cards/index.html', context)
 
 
 def get_display_cards(request):
     return render(request, 'cards/display_cards.html')
 
+# def show_cards(request):
+#     if request.method == 'POST':
+#         return render(request, 'cards/show_cards.html')
 
 def get_info(request):
     # if this is a POST request we need to process the form data
+    context = {}
     print("IN THE FORM")  # testing if we're in the method
     if request.method == 'POST':
         print("FORM IS VALID---")  # testing whether  form can be submitted
@@ -43,28 +56,31 @@ def get_info(request):
             print(banks)
 
             list_of_cards = get_best_cards(groceries, dining_out, gas, travel, everything_else)
-            okay_cards=[]
-            best_cards=[]
+            okay_cards = []
+            best_cards = []
 
             for card in list_of_cards:
                 card_obj = get_cards(card)
                 okay_cards.append(card_obj)
 
-            filtered_cards = filter_cards(banks, credit_score, annual, okay_cards);
+            filtered_cards = filter_cards(banks, credit_score, annual, okay_cards)
 
             if len(filtered_cards) > 5:
                 for i in range(5):
                     best_cards.append(filtered_cards[i])
             else:
                 best_cards = filtered_cards
-
-            context = {}
+            context = {"forms": "active"}
             context['best_cards'] = best_cards
-            return render(request, 'cards/forms.html', context)
+
+            return render(request, 'cards/show_cards.html', context)
     # if a GET (or any other method) we'll create a blank form
     else:
         form = CreditForm()
-    return render(request, 'cards/forms.html', {'form': form})
+        # context = {}
+        context = {"forms": "active"}
+        context['form']= form
+    return render(request, 'cards/forms.html', context)
 
 
 def get_cards(card_param):
@@ -89,8 +105,9 @@ def get_best_cards(grocery_input, dining_out_input, gas_input, travel_input, eve
 
     for card in card_set:
         card_value = float(calculate_card_value(card, grocery_input, dining_out_input, gas_input, travel_input,
-                                          everything_else_input))
-        if user_qualifies_for_bonus(card, grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
+                                                everything_else_input))
+        if user_qualifies_for_bonus(card, grocery_input, dining_out_input, gas_input, travel_input,
+                                    everything_else_input):
             card_value += card.bonusValue
 
         cards_by_value.chosen_cards[card.cardName] = card_value
@@ -99,11 +116,12 @@ def get_best_cards(grocery_input, dining_out_input, gas_input, travel_input, eve
     list_of_cards = list(sorted_cards.keys())
     return list_of_cards
 
+
 def user_qualifies_for_bonus(card, grocery_input, dining_out_input, gas_input, travel_input, everything_else_input):
     for parameter in list(locals().values())[1:]:
         assert parameter is not None
 
-    user_spending = float((grocery_input + dining_out_input + gas_input + travel_input + everything_else_input)/12)
+    user_spending = float((grocery_input + dining_out_input + gas_input + travel_input + everything_else_input) / 12)
 
     # to avoid division by zero
     if card.bonusValue != 0 and card.bonusSpendMonths != 0:
@@ -125,8 +143,9 @@ def calculate_card_value(card, grocery_input, dining_out_input, gas_input, trave
     card_annual_fee = card.annualFee
 
     card_value = float((((grocery_input * card_grocer_multiplier) + (dining_out_input * card_restaurant_multiplier)
-                   + (gas_input * card_gas_multiplier) + (travel_input * card_travel_multiplier)
-                   + (everything_else_input * card_everything_else_multiplier)) * card_reward_value) - card_annual_fee)
+                         + (gas_input * card_gas_multiplier) + (travel_input * card_travel_multiplier)
+                         + (
+                                 everything_else_input * card_everything_else_multiplier)) * card_reward_value) - card_annual_fee)
 
     return card_value
 
@@ -167,6 +186,43 @@ def filter_cards(banks_input, credit_score_input, annual_input, card_list):
     return f3;
 
 
+def filter_cards(banks_input, credit_score_input, annual_input, card_list):
+    card_set = card_list
+    f1 = []
+    f2 = []
+    f3 = []
+
+    if annual_input == 'yes':
+        for card in card_set:
+            if card.annualFee == 0:
+                f1.append(card)
+    else:
+        for card in card_set:
+            f1.append(card)
+
+    if credit_score_input == 'bad':
+        for i in f1:
+            if i.creditScore == "Bad":
+                f2.append(i)
+    elif credit_score_input == 'average':
+        for i in f1:
+            if i.creditScore == "Bad" or i.creditScore == "Average":
+                f2.append(i)
+    elif credit_score_input == 'good':
+        for i in f1:
+            if i.creditScore == "Bad" or i.creditScore == "Average" or i.creditScore == "Good":
+                f2.append(i)
+    else:
+        for i in f1:
+            f2.append(i)
+
+    for k in f2:
+        if k.bankName in banks_input:
+            f3.append(k)
+
+    return f3
+
+
 def sort_cards_by_value(cards):
     assert cards is not None
 
@@ -174,4 +230,51 @@ def sort_cards_by_value(cards):
 
 
 def about_us(request):
+<<<<<<< HEAD
     return render(request, 'cards/AboutUs.html')
+
+
+def submit_feedback(request):
+    if request.method == "POST":
+        form = FeedbackForm(request.POST)
+        if form.is_valid(): #if the form is valid get all values 
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            category = form.cleaned_data['category']
+            subject = form.cleaned_data['subject']
+            body = form.cleaned_data['body']
+            
+            MessageString = 'NAME: '+ name + "<br> " + 'EMAIL: ' +  email + "<br>" + 'SUBJECT: ' + subject+ '<br>' + 'BODY: '+ body
+
+            #confirmation email send to the user 
+            confirmation = EmailMessage(
+                    'WhichCard Confirmation Email',
+                    'Our team at WhichCard has recieved your feedback and will review it shortly. Thank-you for using WhichCard!',
+                    'noreplywhiteboard001@gmail.com',
+                    [email,],
+            )
+            confirmation.content_subtype = "html"
+            confirmation.send(fail_silently=False)
+
+            #email containing data sent to out email
+            msg = EmailMessage(
+                    category + ' feedback from a user',
+                    MessageString,
+                    'noreplywhiteboard001@gmail.com',
+                    ['noreplywhiteboard001@gmail.com',],
+            )
+
+            msg.content_subtype = "html"
+            msg.send()
+
+            form = FeedbackForm()
+            return render(request, 'cards/submit_feedback.html', {'form': form})
+
+
+    else:
+        form = FeedbackForm()
+        return render(request, 'cards/submit_feedback.html', {'form': form})
+=======
+    context= {"about_us": "active"}
+    return render(request, 'cards/AboutUs.html', context)
+>>>>>>> origin/frontend65

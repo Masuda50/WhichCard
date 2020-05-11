@@ -6,7 +6,7 @@ from .. import views
 class TestUrls(TestCase):
 
     def test_home_url_is_resolved(self):
-        self.__resolveUrl(reverse('cards:home'), views.home)
+        self.__resolveUrl(reverse('cards:index'), views.index)
 
     def test_forms_url_is_resolved(self):
         self.__resolveUrl(reverse('cards:forms'), views.get_info)
