@@ -74,7 +74,7 @@ def get_info(request):
         form = CreditForm()
         context = {"forms": "active"}
         context['form']= form
-    return render(request, 'cards/forms.html', context)
+        return render(request, 'cards/forms.html', context)
 
 
 def get_cards(card_param):
