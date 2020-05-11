@@ -1,6 +1,6 @@
 
 .navbar {
-     background-color: black;
+     background-color: lightskyblue;
      position :relative;
      overflow : hidden ;
 }
@@ -20,4 +20,6 @@
      font-weight: bold;
 }
 
-
+.navbar a:hover{
+     border-top: yellowgreen;
+}
