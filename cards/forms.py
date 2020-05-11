@@ -29,8 +29,8 @@ class CreditForm(forms.Form):
 
 class FeedbackForm(forms.Form):
     name = forms.CharField(label='Name',widget=forms.TextInput(attrs={'style': 'width:300px'}))
-    email = forms.EmailField(label='E-mail', widget=forms.TextInput(attrs={'style': 'width:300px'}))
+    email = forms.EmailField(label='E-mail', widget=forms.EmailInput(attrs={'style': 'width:300px'}))
     category = forms.ChoiceField(label='Select Issue', widget=forms.RadioSelect,
                                  choices=CATEGORY_CHOICES, initial='no')
-    subject = forms.CharField(required=False,widget=forms.NumberInput(attrs={'style': 'width:300px'}))
+    subject = forms.CharField(required=False,widget=forms.TextInput(attrs={'style': 'width:300px'}))
     body = forms.CharField(widget=forms.Textarea)
