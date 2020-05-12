@@ -60,4 +60,28 @@
      color: black;
 } 
 
+.container2{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 30px;
+}
 
+.frame{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: no-wrap;
+    align-items: center;
+    margin: 20px;
+    flex: 1 0 20%;
+}
+
+.boss{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: no-wrap;
+    align-items: center;
+    flex: 1 1 100%;
+    margin-top: 20px;
+}
