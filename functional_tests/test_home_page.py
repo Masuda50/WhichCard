@@ -14,7 +14,7 @@ class TestHomePage(BaseFunctionalTest):
             self.browser.find_element_by_tag_name('button').click()
         landing = self.browser.find_element_by_tag_name('nav')
         self.assertEqual(
-            landing.text, 'Which Card\nHome\n(current)\nForms\nAbout Us'
+            landing.text, 'Which Card\nHome\n(current)\nForms\nAbout Us\nSubmit Feedback'
         )
 
     # test click Forms in navbar
@@ -28,6 +28,10 @@ class TestHomePage(BaseFunctionalTest):
     # test click Home in navbar
     def test_home_page_redirects_to_home(self):
         self.__check_navbar_redirection_to("Home\n(current)", "cards:index")
+        
+    # test click Submit Feedback in navbar
+    def test_home_page_redirects_to_home(self):
+        self.__check_navbar_redirection_to("Submit Feedback", "cards:submit_feedback")
 
     # helper to test navigation bar re-directions
     def __check_navbar_redirection_to(self, element, destination):
