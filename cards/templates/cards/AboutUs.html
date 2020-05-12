@@ -1,25 +1,28 @@
 {% extends "cards/base.html" %}
 {% load crispy_forms_tags %}
-
+{{frames}}
 {% block content %}
 
 
 <body>
-    <div class = "container">
-<h1 class="display-4">About Us</h1>
-
-<p class="font-weight-normal">Our goal at Which Card is to develop a tool that will allow users to easily compare different rewards credit cards based on how they shop. Allow even a novice credit card user to get a card that will allow him or her to earn the most points, miles or cash back possble.</p>
-    
-<h5 style="color:#337CFF">Our Product</h5>
-<p class="font-weight-normal">We’ll develop a credit card comparison tool that accounts for peoples’ spending habits, and instantly ranks credit card options from America’s top 6 banks - from most to least rewarding. The tool will also display to users their first year rewards value estimate, and provide a few details about each card so they can quickly compare cards side-by-side.
-    
-    <p class="font-weight-normal"></p>We can collect information on credit cards from here: https://www.creditcards.com/rewards-cards/</p>
-    
-    <p class="font-weight-normal"> We can collect the value of points/miles here: https://thepointsguy.com/guide/monthly-valuations/</p>
-    
-    <p class="font-weight-normal">Cash back is easy, because that’s just straight money (example 1% cash back on $100 is just $1)</p>
-
+<div class="container">
+    <h1 class="display-3"><strong>About Us</strong></h1>
+    <p class="font-weight-normal">Write something here...</p>
+    <center class="display-4"><u><strong> The Team </strong></u></center>
+    <div class="container2">
+        {% for frame in frames%}
+        {% if frame.name == 'Prof. Haydar'%}
+        <div class="boss">
+            <center class="display-4"><u><strong> Boss </strong></u></center>
+            {% include 'cards/team.html' with value=frame %}
+        </div>
+        {% else %}
+        {% include 'cards/team.html' with value=frame %}
+        {% endif %}
+        {% endfor %}
     </div>
+</div>
+
 </body>
 </html>
 
