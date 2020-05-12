@@ -6,7 +6,7 @@ from .. import views
 class TestUrls(TestCase):
 
     def test_home_url_is_resolved(self):
-        self.__resolveUrl(reverse('cards:home'), views.home)
+        self.__resolveUrl(reverse('cards:index'), views.index)
 
     def test_forms_url_is_resolved(self):
         self.__resolveUrl(reverse('cards:forms'), views.get_info)
@@ -16,6 +16,9 @@ class TestUrls(TestCase):
 
     def test_displayCards_url_is_resolved(self):
         self.__resolveUrl(reverse('cards:display_cards'), views.get_display_cards)
+
+    def test_submit_feedback_url_resolved(self):
+        self.__resolveUrl(reverse('cards:submit_feedback'), views.submit_feedback)
 
     # helper to check if url is resolved using function
     def __resolveUrl(self, url, function):

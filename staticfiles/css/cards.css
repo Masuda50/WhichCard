@@ -1,0 +1,26 @@
+.display {
+     background-color: Gainsboro;
+     position :relative;
+     overflow : hidden ;
+
+}
+
+.value  {
+     float : center;
+     color: RoyalBlue;
+     font-size: 20px;
+     font-weight: bold;
+}
+
+.grid-container {
+  display: grid;
+    display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-column-gap: 25px;
+}
+
+.space{
+      background-color: white;
+      height: 50px;
+
+}

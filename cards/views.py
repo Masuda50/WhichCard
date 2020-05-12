@@ -7,21 +7,31 @@ from cards.forms import CreditForm
 from cards.forms import FeedbackForm
 from .object import ChosenCards
 import operator
+from django.core.mail import EmailMessage
+
 
 
 # Create your views here.
 
 
-def home(request):
-    return render(request, 'cards/homepage.html')
+# def home(request):
+#     return render(request, 'cards/homepage.html')
+
+def index(request):
+    context= {"home": "active"}
+    return render(request, 'cards/index.html', context)
 
 
 def get_display_cards(request):
     return render(request, 'cards/display_cards.html')
 
+# def show_cards(request):
+#     if request.method == 'POST':
+#         return render(request, 'cards/show_cards.html')
 
 def get_info(request):
     # if this is a POST request we need to process the form data
+    context = {}
     print("IN THE FORM")  # testing if we're in the method
     if request.method == 'POST':
         print("FORM IS VALID---")  # testing whether  form can be submitted
@@ -53,21 +63,24 @@ def get_info(request):
                 card_obj = get_cards(card)
                 okay_cards.append(card_obj)
 
-            filtered_cards = filter_cards(banks, credit_score, annual, okay_cards);
+            filtered_cards = filter_cards(banks, credit_score, annual, okay_cards)
 
             if len(filtered_cards) > 5:
                 for i in range(5):
                     best_cards.append(filtered_cards[i])
             else:
                 best_cards = filtered_cards
-
-            context = {}
+            context = {"forms": "active"}
             context['best_cards'] = best_cards
-            return render(request, 'cards/forms.html', context)
+
+            return render(request, 'cards/show_cards.html', context)
     # if a GET (or any other method) we'll create a blank form
     else:
         form = CreditForm()
-    return render(request, 'cards/forms.html', {'form': form})
+        # context = {}
+        context = {"forms": "active"}
+        context['form']= form
+    return render(request, 'cards/forms.html', context)
 
 
 def get_cards(card_param):
@@ -170,7 +183,7 @@ def filter_cards(banks_input, credit_score_input, annual_input, card_list):
         if k.bankName in banks_input:
             f3.append(k)
 
-    return f3;
+    return f3
 
 
 def sort_cards_by_value(cards):
@@ -180,9 +193,49 @@ def sort_cards_by_value(cards):
 
 
 def about_us(request):
-    return render(request, 'cards/AboutUs.html')
+    context = {"about_us": "active"}
+    return render(request, 'cards/AboutUs.html', context)
 
 
 def submit_feedback(request):
-    form = FeedbackForm()
-    return render(request, 'cards/submit_feedback.html', {'form': form})
+    context= {}
+    if request.method == "POST":
+        form = FeedbackForm(request.POST)
+        if form.is_valid():  # if the form is valid get all values
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            category = form.cleaned_data['category']
+            subject = form.cleaned_data['subject']
+            body = form.cleaned_data['body']
+            
+            MessageString = 'NAME: '+ name + "<br> " + 'EMAIL: ' +  email + "<br>" + 'SUBJECT: ' + subject+ '<br>' + 'BODY: '+ body
+
+            # confirmation email send to the user
+            confirmation = EmailMessage(
+                    'WhichCard Confirmation Email',
+                    'Our team at WhichCard has recieved your feedback and will review it shortly. Thank-you for using WhichCard!',
+                    'noreplywhiteboard001@gmail.com',
+                    [email, ],
+            )
+            confirmation.content_subtype = "html"
+            confirmation.send(fail_silently=False)
+
+            # email containing data sent to out email
+            msg = EmailMessage(
+                    category + ' feedback from a user',
+                    MessageString,
+                    'noreplywhiteboard001@gmail.com',
+                    ['noreplywhiteboard001@gmail.com',],
+            )
+
+            msg.content_subtype = "html"
+            msg.send()
+
+            form = FeedbackForm()
+            context = {'submit_feedback': 'active', 'form': form}
+            return render(request, 'cards/submit_feedback.html', context)
+
+    else:
+        form = FeedbackForm()
+        context = {'submit_feedback': 'active', 'form': form}
+        return render(request, 'cards/submit_feedback.html', context)
