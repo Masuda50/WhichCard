@@ -230,14 +230,15 @@ def sort_cards_by_value(cards):
 
 
 def about_us(request):
-<<<<<<< HEAD
-    return render(request, 'cards/AboutUs.html')
+    context = {"about_us": "active"}
+    return render(request, 'cards/AboutUs.html', context)
 
 
 def submit_feedback(request):
+    context= {}
     if request.method == "POST":
         form = FeedbackForm(request.POST)
-        if form.is_valid(): #if the form is valid get all values 
+        if form.is_valid():  # if the form is valid get all values
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
             category = form.cleaned_data['category']
@@ -246,17 +247,17 @@ def submit_feedback(request):
             
             MessageString = 'NAME: '+ name + "<br> " + 'EMAIL: ' +  email + "<br>" + 'SUBJECT: ' + subject+ '<br>' + 'BODY: '+ body
 
-            #confirmation email send to the user 
+            # confirmation email send to the user
             confirmation = EmailMessage(
                     'WhichCard Confirmation Email',
                     'Our team at WhichCard has recieved your feedback and will review it shortly. Thank-you for using WhichCard!',
                     'noreplywhiteboard001@gmail.com',
-                    [email,],
+                    [email, ],
             )
             confirmation.content_subtype = "html"
             confirmation.send(fail_silently=False)
 
-            #email containing data sent to out email
+            # email containing data sent to out email
             msg = EmailMessage(
                     category + ' feedback from a user',
                     MessageString,
@@ -268,13 +269,10 @@ def submit_feedback(request):
             msg.send()
 
             form = FeedbackForm()
-            return render(request, 'cards/submit_feedback.html', {'form': form})
-
+            context = {'submit_feedback': 'active', 'form': form}
+            return render(request, 'cards/submit_feedback.html', context)
 
     else:
         form = FeedbackForm()
-        return render(request, 'cards/submit_feedback.html', {'form': form})
-=======
-    context= {"about_us": "active"}
-    return render(request, 'cards/AboutUs.html', context)
->>>>>>> origin/frontend65
+        context = {'submit_feedback': 'active', 'form': form}
+        return render(request, 'cards/submit_feedback.html', context)

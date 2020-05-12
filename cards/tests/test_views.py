@@ -11,6 +11,7 @@ class CardsViewsTests(TestCase):
         self.about_us_url = reverse('cards:aboutus')
         self.display_cards_url = reverse('cards:display_cards')
         self.get_info_url = reverse('cards:forms')
+        self.submit_feedback_url = reverse('cards:submit_feedback')
 
     # test home page view
     def test_home_view_GET(self):
@@ -53,6 +54,11 @@ class CardsViewsTests(TestCase):
 
         self.__check_response_code(response)
         self.__checkTemplateUsed(response, 'cards/forms.html')
+
+    def test_submit_feedback_view_GET(self):
+        response = self.__getResponse(self.submit_feedback_url)
+        self.__check_response_code(response)
+        self.__checkTemplateUsed(response, 'cards/submit_feedback.html')
 
     # test get_info view given no data
     def test_get_info_view_no_data_POST(self):
