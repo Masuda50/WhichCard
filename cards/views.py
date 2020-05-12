@@ -8,6 +8,7 @@ from cards.forms import FeedbackForm
 from .object import ChosenCards
 import operator
 from django.core.mail import EmailMessage
+from .team_generator import get_frames
 
 
 
@@ -193,7 +194,9 @@ def sort_cards_by_value(cards):
 
 
 def about_us(request):
-    context = {"about_us": "active"}
+    context = {"about_us": "active",
+               "frames": get_frames(),
+               }
     return render(request, 'cards/AboutUs.html', context)
 
 
