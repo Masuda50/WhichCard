@@ -198,6 +198,7 @@ def about_us(request):
 
 
 def submit_feedback(request):
+    context= {}
     if request.method == "POST":
         form = FeedbackForm(request.POST)
         if form.is_valid():  # if the form is valid get all values
@@ -231,8 +232,10 @@ def submit_feedback(request):
             msg.send()
 
             form = FeedbackForm()
-            return render(request, 'cards/submit_feedback.html', {'form': form})
+            context = {'submit_feedback': 'active', 'form': form}
+            return render(request, 'cards/submit_feedback.html', context)
 
     else:
         form = FeedbackForm()
-        return render(request, 'cards/submit_feedback.html', {'form': form})
+        context = {'submit_feedback': 'active', 'form': form}
+        return render(request, 'cards/submit_feedback.html', context)
