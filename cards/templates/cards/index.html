@@ -1,6 +1,7 @@
 {% extends "cards/base.html" %}
 
 {% block content %}
+{% load static %}
 
 <div class="container">
   <br> <br>
@@ -15,7 +16,6 @@
 
   <div class="row" style="text-align: center;">
     <div class="column" style="padding:65px;">
-      {% load static %}
       <img src="{% static 'cards/images/spending.png' %}" alt="spending" style="width:100%; padding-bottom:20px;">
       <h6 style="max-width:220px; color:#337CFF;">Let's get to know you first!</h6>
       <p style="max-width:220px;">Enter your spending habits into our form so that we fetch the cards with rewards that
