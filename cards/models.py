@@ -1,9 +1,9 @@
 from django.db import models
-
+from django.utils import timezone
 # Create your models here.
 
-class Card (models.Model): 
 
+class Card (models.Model):
 	cardName=models.CharField(max_length=200)
 	bankName=models.CharField(max_length=200)
 	annualFee= models.IntegerField()
@@ -25,9 +25,9 @@ class Card (models.Model):
 	bonusMinimumSpend=models.IntegerField()
 	bonusSpendMonths=models.IntegerField()
 
-
-
-
+	# values will be used to inform the user about the last DB update
+	# created_at = models.DateTimeField(auto_now_add=True)
+	# updated_at = models.DateTimeField(auto_now=True)
 
 	def __str__(self):
 		return self.cardName
