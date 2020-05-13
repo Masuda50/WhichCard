@@ -217,7 +217,7 @@ def submit_feedback(request):
             # confirmation email send to the user
             confirmation = EmailMessage(
                     'WhichCard Confirmation Email',
-                    'Our team at WhichCard has recieved your feedback and will review it shortly. Thank-you for using WhichCard!',
+                    'Our team at WhichCard has recieved your feedback and will review it shortly. Thank you for using WhichCard!',
                     'noreplywhiteboard001@gmail.com',
                     [email, ],
             )
