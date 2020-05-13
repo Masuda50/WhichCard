@@ -55,10 +55,28 @@ class CardsViewsTests(TestCase):
         self.__check_response_code(response)
         self.__checkTemplateUsed(response, 'cards/forms.html')
 
+    # test get submit_feedback view
     def test_submit_feedback_view_GET(self):
         response = self.__getResponse(self.submit_feedback_url)
         self.__check_response_code(response)
         self.__checkTemplateUsed(response, 'cards/submit_feedback.html')
+
+    def test_submit_feedback_view_data_POST(self):
+        data = {
+            'name': 'Bob Billy',
+            'email': 'test@email.com',
+            'category': 'bug',
+            'subject': 'stuff',
+            'body': 'testing',
+        }
+
+        response = self.client.post(self.submit_feedback_url, data)
+        self.__check_response_code(response)
+        self.__checkTemplateUsed(response, 'cards/submit_feedback.html')
+
+    def test_submit_feedback_view_no_data_POST(self):
+        response = self.client.post(self.submit_feedback_url, {})
+        self.assertNotEqual(response, 302)
 
     # test get_info view given no data
     def test_get_info_view_no_data_POST(self):

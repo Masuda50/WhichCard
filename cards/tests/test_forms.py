@@ -1,5 +1,5 @@
 from django.test import TestCase
-from ..forms import CreditForm
+from ..forms import CreditForm, FeedbackForm
 
 
 class CreditFormTest(TestCase):
@@ -26,3 +26,19 @@ class CreditFormTest(TestCase):
 
         self.assertFalse(form.is_valid())
         self.assertEquals(len(form.errors), 8)
+
+    def test_feedback_form_valid_data(self):
+        data = {
+            'name': 'Bob Billy',
+            'email': 'test@email.com',
+            'category': 'bug',
+            'subject': 'stuff',
+            'body': 'testing',
+        }
+        form = FeedbackForm(data=data)
+        self.assertTrue(form.is_valid())
+
+    def test_feedback_form_no_data(self):
+        form = FeedbackForm(data={})
+        self.assertFalse(form.is_valid())
+        self.assertEquals(len(form.errors), 4)

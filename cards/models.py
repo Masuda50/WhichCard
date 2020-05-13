@@ -25,9 +25,5 @@ class Card (models.Model):
 	bonusMinimumSpend=models.IntegerField()
 	bonusSpendMonths=models.IntegerField()
 
-
-
-
-
 	def __str__(self):
 		return self.cardName

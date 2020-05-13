@@ -28,11 +28,9 @@
         {% if frame.name == 'Prof. Haydar'%}
         <div class="boss">
             <h3 style="color:#337CFF; font-size:25px; text-align: center;">Boss</h3>
-            {% include 'cards/team.html' with value=frame %}
         </div>
-        {% else %}
-        {% include 'cards/team.html' with value=frame %}
         {% endif %}
+        {% include 'cards/team.html' with value=frame %}
         {% endfor %}
     </div>
 </div>
