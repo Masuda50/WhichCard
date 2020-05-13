@@ -27,8 +27,8 @@ class Card (models.Model):
 
 
 	# values will be used to inform the user about the last DB update
-	# created_at = models.DateTimeField(auto_now_add=True)
-	# updated_at = models.DateTimeField(auto_now=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True)
 
 	def __str__(self):
 		return self.cardName
