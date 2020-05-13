@@ -3,9 +3,9 @@
 
 {% block content %}
 
-<div class= "container">
+<div class="container">
 
-    <h2 class = "display-4">We recommend these cards for you!</h2>
+    <h2 class="display-4">We recommend these cards for you!</h2>
     <!-- <p class = "text-primary">Some additional words below the caption</p> -->
 
     <form>
@@ -20,6 +20,7 @@
     {% for card in best_cards %}
     {% include 'cards/display_cards.html' with value=card %}
     {% endfor %}
+    <p>Latest Update: May 14, 2020</p>
 </div>
 
 {% endblock %}
