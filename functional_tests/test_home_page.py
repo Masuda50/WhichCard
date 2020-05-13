@@ -10,7 +10,7 @@ class TestHomePage(BaseFunctionalTest):
 
     # test click Forms in navbar
     def test_home_page_redirects_to_forms(self):
-        self.__check_navbar_redirection_to("Forms", 'cards:forms')
+        self.__check_navbar_redirection_to("Find the Best Cards", 'cards:forms')
 
     # test click About us in navbar
     def test_home_page_redirects_to_aboutus(self):
