@@ -25,6 +25,7 @@ class Card (models.Model):
 	bonusMinimumSpend=models.IntegerField()
 	bonusSpendMonths=models.IntegerField()
 
+
 	# values will be used to inform the user about the last DB update
 	# created_at = models.DateTimeField(auto_now_add=True)
 	# updated_at = models.DateTimeField(auto_now=True)

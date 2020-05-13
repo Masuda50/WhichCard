@@ -160,6 +160,7 @@ def filter_cards(banks_input, credit_score_input, annual_input, card_list):
         for card in card_set:
             if card.annualFee == 0:
                 f1.append(card)
+
     else:
         for card in card_set:
             f1.append(card)
@@ -236,8 +237,7 @@ def submit_feedback(request):
 
             form = FeedbackForm()
             context = {'submit_feedback': 'active', 'form': form}
-            return render(request, 'cards/submit_feedback.html', context)
-
+        return render(request, 'cards/submit_feedback.html', context)
     else:
         form = FeedbackForm()
         context = {'submit_feedback': 'active', 'form': form}

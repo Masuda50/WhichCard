@@ -25,8 +25,6 @@ class CreditForm(forms.Form):
                                       choices=BANK_CHOICES, initial='all')
 
 
-
-
 class FeedbackForm(forms.Form):
     name = forms.CharField(label='Name',widget=forms.TextInput(attrs={'style': 'width:300px'}))
     email = forms.EmailField(label='E-mail', widget=forms.EmailInput(attrs={'style': 'width:300px'}))
