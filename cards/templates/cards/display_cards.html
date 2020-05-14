@@ -1,9 +1,9 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/cards.css' %}" />
 <div class="display">
-    <h3 class=" value">{{value}}</h3>
+    <h3 class="value" style="padding: 20px 0px 0px 20px;">{{value}}</h3>
     <div class="grid-container">
-        <div class="grid-item"><img
+        <div class="grid-item" style="padding-left: 20px;"><img
                 src="{{STATIC_URL}}https://res.cloudinary.com/value-penguin/image/upload/dpr_1.0,f_auto,q_auto/unavailable-card-update_c5bzxf.png"
                 height="150" width="225" /></div>
         <div class="grid-container">
@@ -16,7 +16,9 @@
             <a class="btn btn-warning" target="_blank" href={{value.link}} role="button">APPLY NOW</a>
         </div>
     </div>
-    <br />
-    <div class="space"></div>
+    <div style="text-align: right; font-size: 12px; margin-top: 5px;">
+        <p><b>Added: </b>{{value.created_at}} <b>Latest Update: </b>{{value.updated_at}}</p>
+    </div>
+    <div class="space" style="padding: 0px;"></div>
 
 </div>
