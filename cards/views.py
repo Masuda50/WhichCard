@@ -9,6 +9,7 @@ from .object import ChosenCards
 import operator
 from django.core.mail import EmailMessage
 from .team_generator import get_frames
+from django.contrib import messages
 
 
 
@@ -211,7 +212,7 @@ def submit_feedback(request):
             category = form.cleaned_data['category']
             subject = form.cleaned_data['subject']
             body = form.cleaned_data['body']
-            
+
             MessageString = 'NAME: '+ name + "<br> " + 'EMAIL: ' +  email + "<br>" + 'SUBJECT: ' + subject+ '<br>' + 'BODY: '+ body
 
             # confirmation email send to the user
@@ -234,10 +235,8 @@ def submit_feedback(request):
 
             msg.content_subtype = "html"
             msg.send()
-
-            form = FeedbackForm()
-            context = {'submit_feedback': 'active', 'form': form}
-        return render(request, 'cards/submit_feedback.html', context)
+            messages.success(request, "Thank you for your feedback! It has been recorded.")
+        return render(request, 'cards/index.html', {'home': 'active'})
     else:
         form = FeedbackForm()
         context = {'submit_feedback': 'active', 'form': form}
