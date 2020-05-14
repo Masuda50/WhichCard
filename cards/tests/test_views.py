@@ -72,7 +72,7 @@ class CardsViewsTests(TestCase):
 
         response = self.client.post(self.submit_feedback_url, data)
         self.__check_response_code(response)
-        self.__checkTemplateUsed(response, 'cards/submit_feedback.html')
+        self.__checkTemplateUsed(response, 'cards/index.html')
 
     def test_submit_feedback_view_no_data_POST(self):
         response = self.client.post(self.submit_feedback_url, {})
