@@ -24,7 +24,9 @@ class CardModelTest(TestCase):
 			link="Chase.com",
 			creditScore=2,
 			bonusMinimumSpend=1,
-			bonusSpendMonths=1)
+			bonusSpendMonths=1,
+			created_at="May 13, 2020 7:44 p.m.",
+			updated_at="May 13, 2020 7:44 p.m.")
 
 		self.card.save()
 
