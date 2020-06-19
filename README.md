@@ -1,5 +1,7 @@
 # WhichCard
 
+Deployed at : https://whichcard.herokuapp.com/
+
 # Problem statement
 
 Today, over 70% of households in the United States have at least 1 credit card. Almost 1 in 4 millennials plans to open a new credit card account in the next year, a higher percentage than both Gen Xers (23%) and baby boomers (13%). Moreover, the credit card rewards market is richer than ever. Credit card aficionados are able to use points and miles earned through credit card to earn free vacations, flights and hotel stays. However, with multiple offers on the market, across many major credit card issuers, comparing options can be a daunting task for many. Furthermore, choosing the wrong rewards credit card can leave thousands of dollars on the table in un-optimized rewards.
@@ -18,3 +20,8 @@ We can collect information on credit cards from here: https://www.creditcards.co
 We can collect the value of points/miles here: https://thepointsguy.com/guide/monthly-valuations/
 
 Cash back is easy, because that’s just straight money (example 1% cash back on $100 is just $1)
+
+# Technologies 
+
+This website is made with the Python Django framework, HTML/CSS frontend, and SQLite backend. 
+
